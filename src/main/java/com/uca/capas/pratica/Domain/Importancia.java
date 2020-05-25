@@ -21,6 +21,10 @@ public class Importancia {
     @OneToMany(mappedBy="importancia", fetch = FetchType.EAGER)
     private List<Contribuyente> contribuyentes;
 
+    public Importancia(){
+
+    }
+
     public Integer getCodigoImportancia() {
         return codigoImportancia;
     }

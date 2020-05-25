@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public class ImporatanciaDAOImp implements ImportanciaDAO{
-@PersistenceContext(unitName = "practica")
+@PersistenceContext(unitName = "pratica")
 private EntityManager entityManager;
 
 

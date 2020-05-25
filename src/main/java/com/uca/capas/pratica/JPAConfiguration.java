@@ -28,8 +28,8 @@ public class JPAConfiguration {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPersistenceUnitName("practica");
-        em.setPackagesToScan("com.uca.capas.practica.Domain");
+        em.setPersistenceUnitName("pratica");
+        em.setPackagesToScan("com.uca.capas.pratica.Domain");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

@@ -23,12 +23,12 @@ public class Contribuyente {
     @Column(name="s_apellido")
     private String apellido;
 
-    @Size(max = 14,message="El nombre no debe tener mas de 14 caracteres")
+    @Size(max = 14,min = 14,message="Tiene que ser de 14 caracteres")
     @NotEmpty(message="Este campo no puede quedar vacio")
     @Column(name="s_nit")
     private String nit;
 
-    @Column(name="f_fecha_ingreso")
+    @Column(name="f_fecha_ingresa")
     private Date fechaIngreso;
 
     @ManyToOne(fetch=FetchType.EAGER)

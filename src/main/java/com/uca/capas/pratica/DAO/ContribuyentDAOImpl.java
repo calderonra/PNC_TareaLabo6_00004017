@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 public class ContribuyentDAOImpl implements ContribuyenteDAO {
-    @PersistenceContext(unitName = "practica")
+    @PersistenceContext(unitName = "pratica")
     private EntityManager entityManager;
 
     @Override
