@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -21,12 +22,10 @@ public class ContribuyentImpl implements ContribuyenteService{
         return contribuyenteDAO.findAll();
     }
 
-    @Override
-    public Contribuyente finOne(Integer code) throws DataAccessException {
-        return contribuyenteDAO.finOne(code);
-    }
+
 
     @Override
+    @Transactional
     public void save(Contribuyente contribuyente) throws DataAccessException {
     contribuyenteDAO.save(contribuyente);
     }

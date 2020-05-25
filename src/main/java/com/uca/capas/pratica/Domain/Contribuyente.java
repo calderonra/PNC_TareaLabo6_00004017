@@ -1,6 +1,7 @@
 package com.uca.capas.pratica.Domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -8,46 +9,42 @@ import java.util.Date;
 @Table(schema = "public",name = "contribuyente")
 public class Contribuyente {
     @Id
-    @Column(name = "c_contribuyente")
+    @Column(name="c_contribuyente")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer c_contribuyente;
+    private Integer codigoContribuyente;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "s_importancia")
-    private Importancia importancia;
-
-    @Column(name = "s_nombre")
-    @Size(max = 30,message = "El nombre no debe tener mas de 30 de caracteres")
+    @Size(max = 30,message="El nombre no debe tener mas de 30 caracteres")
+    @NotEmpty(message="Este campo no puede quedar vacio")
+    @Column(name="s_nombre")
     private String nombre;
 
-    @Column(name = "s_apellido")
-    @Size(max = 30,message = "El nombre no debe tener mas de 30 de caracteres")
-    private  String apellido;
+    @Size(max = 30,message="El nombre no debe tener mas de 30 caracteres")
+    @NotEmpty(message="Este campo no puede quedar vacio")
+    @Column(name="s_apellido")
+    private String apellido;
 
-    @Column(name = "s_nit")
+    @Size(max = 14,message="El nombre no debe tener mas de 14 caracteres")
+    @NotEmpty(message="Este campo no puede quedar vacio")
+    @Column(name="s_nit")
     private String nit;
 
-    @Column(name="f_fecha")
-    private Date date;
+    @Column(name="f_fecha_ingreso")
+    private Date fechaIngreso;
 
-    public Contribuyente(){
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="c_importancia")
+    private Importancia importancia;
+
+    public Contribuyente() {
 
     }
 
-    public Integer getC_contribuyente() {
-        return c_contribuyente;
+    public Integer getCodigoContribuyente() {
+        return codigoContribuyente;
     }
 
-    public void setC_contribuyente(Integer c_contribuyente) {
-        this.c_contribuyente = c_contribuyente;
-    }
-
-    public Importancia getImportancia() {
-        return importancia;
-    }
-
-    public void setImportancia(Importancia importancia) {
-        this.importancia = importancia;
+    public void setCodigoContribuyente(Integer codigoContribuyente) {
+        this.codigoContribuyente = codigoContribuyente;
     }
 
     public String getNombre() {
@@ -74,11 +71,19 @@ public class Contribuyente {
         this.nit = nit;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getFechaIngreso() {
+        return fechaIngreso;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    };
+
+    public Importancia getImportancia() {
+        return importancia;
+    }
+
+    public void setImportancia(Importancia importancia) {
+        this.importancia = importancia;
     }
 }

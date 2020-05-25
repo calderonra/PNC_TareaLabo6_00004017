@@ -20,8 +20,8 @@
             <th th:text="${contribuyente.nombre}"/>
             <th th:text="${contribuyente.apellido}"/>
             <th th:text="${contribuyente.nit}"/>
-            <th th:text="${contribuyente.importancia.importancia}"/>
-            <th th:text="${#dates.format(contribuyente.fechaIngreso, 'dd-MMM-yyyy')}"/>
+            <th th:text="${contribuyente.importancia.codigoImportancia}"/>
+            <th th:text="${#dates.format(contribuyente.date, 'dd-MMM-yyyy')}"/>
         </tr>
     </th:block>
 </table>

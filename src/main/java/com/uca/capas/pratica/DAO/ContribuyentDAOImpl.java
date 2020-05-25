@@ -14,24 +14,28 @@ import java.util.List;
 public class ContribuyentDAOImpl implements ContribuyenteDAO {
     @PersistenceContext(unitName = "practica")
     private EntityManager entityManager;
+
     @Override
     public List<Contribuyente> findAll() throws DataAccessException {
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT * FROM public.contribuyente");
+        sb.append("select * from public.contribuyente");
         Query query = entityManager.createNativeQuery(sb.toString(), Contribuyente.class);
-        List <Contribuyente> resulset = query.getResultList();
-        return resulset;
+        List <Contribuyente> resultset = query.getResultList();
+        return resultset;
     }
 
-    @Override
-    public Contribuyente finOne(Integer code) throws DataAccessException {
-        return null;
-    }
-
-
-    @Transactional
     @Override
     public void save(Contribuyente contribuyente) throws DataAccessException {
-        entityManager.persist(contribuyente);
+        try {
+            if(contribuyente.getCodigoContribuyente()==null)
+                entityManager.persist(contribuyente);
+            else {
+                entityManager.merge(contribuyente);
+                entityManager.flush();
+            }
+        }catch(Throwable e) {
+            e.printStackTrace();
+        }
+
     }
 }

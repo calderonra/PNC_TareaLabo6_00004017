@@ -5,6 +5,7 @@ import com.uca.capas.pratica.Domain.Importancia;
 import com.uca.capas.pratica.Service.ContribuyenteService;
 import com.uca.capas.pratica.Service.ImportanciaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+@Controller
 public class MainController {
 
     @Autowired
@@ -21,9 +23,10 @@ public class MainController {
 
     @Autowired
     ImportanciaService importanciaService;
+
     @RequestMapping("/inicio")
-    public ModelAndView Inicio(){
-        ModelAndView mav= new ModelAndView();
+    public ModelAndView inicio() {
+        ModelAndView mav = new ModelAndView();
         List<Importancia> importancias = null;
         try {
             importancias = importanciaService.findAll();
@@ -36,8 +39,6 @@ public class MainController {
         return mav;
     }
 
- //   @RequestMapping("/formEstudiante")
-
     @PostMapping("/guardarContribuyente")
     public ModelAndView save(@Valid @ModelAttribute Contribuyente contribuyente, BindingResult result) {
         ModelAndView mav = new ModelAndView();
@@ -46,13 +47,12 @@ public class MainController {
         System.out.println(formatter.format(date));
         if(!(result.hasErrors())) {
             try{
-                contribuyente.setDate(date);
+                contribuyente.setFechaIngreso(date);
                 contribuyenteService.save(contribuyente);
                 mav.setViewName("exito");
             }catch (Exception e) {
                 e.printStackTrace();
             }
-            //mav.addObject("contribuyente", new Contribuyente());
         } else mav.setViewName("index");
         return mav;
     }
